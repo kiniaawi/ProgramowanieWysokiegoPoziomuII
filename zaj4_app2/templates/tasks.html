@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista zadań</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        .task { padding: 10px; margin: 5px 0; border: 1px solid #ddd; border-radius: 4px; }
+        .done { text-decoration: line-through; color: #888; }
+        form { margin-bottom: 20px; }
+        button { margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <h1>Lista zadań</h1>
+
+    <form method="POST">
+        <input type="text" name="task" placeholder="Nowe zadanie..." required>
+        <button type="submit">Dodaj</button>
+    </form>
+
+    <ul>
+        {% for task in tasks %}
+            <li class="task {% if task.done %}done{% endif %}">
+                {{ task.text }}
+                <a href="{{ url_for('mark_done', task_id=task.id) }}">
+                    {% if task.done %}Cofnij{% else %}Wykonane{% endif %}
+                </a>
+                <a href="{{ url_for('delete_task', task_id=task.id) }}">Usuń</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <nav>
+        <ul>
+            <li><a href="/">Strona główna</a></li>
+            <li><a href="/tasks">Zadania</a></li>
+            <li><a href="/about">O aplikacji</a></li>
+        </ul>
+    </nav>
+</body>
+</html>

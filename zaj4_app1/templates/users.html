@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Lista użytkowników</title>
+</head>
+<body>
+    <h1>Lista użytkowników</h1>
+    <ul>
+        {% for id, user in users.items() %}
+            <li><a href="/user/{{ id }}">{{ user.name }}</a></li>
+        {% endfor %}
+    </ul>
+    <nav>
+        <ul>
+            <li><a href="/">Strona główna</a></li>
+            <li><a href="/about">O nas</a></li>
+            <li><a href="/users">Użytkownicy</a></li>
+        </ul>
+    </nav>
+</body>
+</html>
